@@ -6,4 +6,4 @@ token =  json.loads(slacktoken)
 slack = Slacker(token['token'])
 
 # Send a message to #general channel
-slack.chat.post_message('#test', 'Hello fellow slackers!')
+slack.chat.post_message('#test', 'Hello fellow slackers!', as_user=True)
