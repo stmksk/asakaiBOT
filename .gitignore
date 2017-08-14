@@ -1,1 +1,4 @@
 slack.json
+__pycache__
+/plugins/__pycache__
+botrun.sh
