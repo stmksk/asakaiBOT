@@ -10,7 +10,6 @@ slackjson = open("slack.json").read()
 settings =  json.loads(slackjson)
 url_burndown = settings['URL_burndown']
 
-
 @respond_to('[sprint|Sprint][0-9]*$')
 def burndown(message):
     textbody = message.body['text']
@@ -29,5 +28,4 @@ def asakai_order_func(message):
 @listen_to('ｱｻｶｲ')
 def asakai_test(message):
     message.send("ｱｻｶｲ？")
-
 

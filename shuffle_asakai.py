@@ -13,8 +13,8 @@ import time
 slackjson = open("slack.json").read()
 settings =  json.loads(slackjson)
 slack = Slacker(settings['token'])
+members_m = settings['members_mention']
 members = settings['members']
-
 
 class JobConfig(object):
 
@@ -93,13 +93,15 @@ def job_controller(crontab):
 @job_controller("0 1 * * MON-FRI")
 def job1():
 
+    members = settings['members']
     random.shuffle(members)
     slack.chat.post_message(
         channel='#helpme_sw',
         text="今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
         "各自10:01 まで前日、本日の作業内容を下書きしてください。\n"+
-        "司会は["+members[0]+"]さんお願いします。",
-        as_user=True)
+        "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。",
+        as_user=True,
+        link_names=1)
 
 @job_controller("1 1 * * MON-FRI")
 def job2():
@@ -109,16 +111,18 @@ def job2():
         text="10:01 になりました。順番に報告お願いします！",
         as_user=True)
 
-""" test用job
+"""テスト用ジョブ
 @job_controller("* * * * MON-FRI")
 def job3():
 
-    random.shuffle(list(members.keys()))
+    members = settings['members']
+    random.shuffle(members)
     slack.chat.post_message(
         channel='#test',
-        text="[[[TEST]]]今日の朝会は["+" ▶ ".join(list(members.keys()))+"]の順です。\n"+
-        "司会は[ "+list(members.keys())[0]+" "+members[list(members.keys())[0]]+" ]さんお願いします。",
-        as_user=True)
+        text="[[[TEST]]]今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
+        "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。",
+        as_user=True,
+        link_names=1)
 """
 
 def main():
