@@ -98,17 +98,17 @@ def job1():
     slack.chat.post_message(
         channel='#helpme_sw',
         text="今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
-        "各自10:01 まで前日、本日の作業内容を下書きしてください。\n"+
+        "各自10:03 まで前日、本日の作業内容を下書きしてください。\n"+
         "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。",
         as_user=True,
         link_names=1)
 
-@job_controller("1 1 * * MON-FRI")
+@job_controller("3 1 * * MON-FRI")
 def job2():
 
     slack.chat.post_message(
         channel='#helpme_sw',
-        text="10:01 になりました。順番に報告お願いします！",
+        text="10:03 になりました。順番に報告お願いします！",
         as_user=True)
 
 """テスト用ジョブ
