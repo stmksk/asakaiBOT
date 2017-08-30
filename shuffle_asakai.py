@@ -14,7 +14,6 @@ slackjson = open("slack.json").read()
 settings =  json.loads(slackjson)
 slack = Slacker(settings['token'])
 members_m = settings['members_mention']
-members = settings['members']
 
 class JobConfig(object):
 
@@ -80,7 +79,7 @@ def job_controller(crontab):
           # 処理を実行する。
           job()
 
-          logging.info("-!< 処理を実行しました。")
+          logging.info("-!< ｎ処理を実行しました。")
 
         except KeyboardInterrupt:
           break
@@ -95,6 +94,8 @@ def job1():
 
     members = settings['members']
     random.shuffle(members)
+    while members[0] == "おくやま":
+      random.shuffle(members)
     slack.chat.post_message(
         channel='#helpme_sw',
         text="今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
