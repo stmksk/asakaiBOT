@@ -98,7 +98,7 @@ def job1():
       random.shuffle(members)
     slack.chat.post_message(
         channel='#helpme_sw',
-        text="今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
+        text="@here 今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
         "各自10:03 まで前日、本日の作業内容を下書きしてください。\n"+
         "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。",
         as_user=True,
@@ -112,19 +112,18 @@ def job2():
         text="10:03 になりました。順番に報告お願いします！",
         as_user=True)
 
-"""テスト用ジョブ
+#テスト用ジョブ
 @job_controller("* * * * MON-FRI")
 def job3():
 
     members = settings['members']
     random.shuffle(members)
     slack.chat.post_message(
-        channel='#test',
-        text="[[[TEST]]]今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
+        channel='#asakaibot_test',
+        text="@here [[[TEST]]]今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
         "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。",
         as_user=True,
         link_names=1)
-"""
 
 def main():
   """
