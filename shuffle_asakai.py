@@ -96,7 +96,7 @@ def job1():
     members = settings['members']
     random.shuffle(members)
     slack.chat.post_message(
-        channel='#helpme_sw',
+        channel='#team_sw',
         text="@here 今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
         "各自10:05 まで前日、本日の作業内容を下書きしてください。\n"+
         "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。\n"+
@@ -108,11 +108,11 @@ def job1():
 def job2():
 
     slack.chat.post_message(
-        channel='#helpme_sw',
+        channel='#team_sw',
         text="10:05 になりました。順番に報告お願いします！",
         as_user=True)
 
-#テスト用ジョブ
+#テスト用ジョブ本番と同じ内容
 @job_controller("* * * * MON-FRI")
 def job3():
 
@@ -127,6 +127,16 @@ def job3():
         as_user=True,
         link_names=1)
 
+#テスト用ジョブ
+@job_controller("* * * * MON-FRI")
+def job4():
+
+    slack.chat.post_message(
+        channel='#team_sw',
+        text="てすと",
+        as_user=True,
+        link_names=1)
+
 def main():
   """
   """
@@ -138,7 +148,7 @@ def main():
     datefmt="%Y-%m-%d %H:%M:%S")
 
   # 処理リスト作成
-  jobs = [job1, job2, job3]
+  jobs = [job1, job2]
 
   # 処理を並列に実行
   p = Pool(len(jobs))
