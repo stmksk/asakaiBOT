@@ -98,7 +98,7 @@ def job1():
     slack.chat.post_message(
         channel='#team_sw',
         text="@here 今日の朝会は["+" ▶ ".join(members)+"]の順です。\n"+
-        "各自10:05 まで前日、本日の作業内容を下書きしてください。\n"+
+        "各自10:05 まで前日、本日の作業内容、前日の残業時間を下書きしてください。\n"+
         "司会は[ "+members[0]+" "+members_m[members[0]]+" ]さんお願いします。\n"+
         "おくやまさんは先に報告お願いします。",
         as_user=True,
